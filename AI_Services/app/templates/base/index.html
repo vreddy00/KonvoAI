@@ -1,0 +1,299 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KonvoAI - Landing Page</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  <!-- FontAwesome for placeholder cartoon icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <!-- Custom CSS for dark theme and enhanced hover cards -->
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+    }
+    /* Navbar Styling */
+    .navbar-dark {
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(10px);
+      padding: 1rem 2rem;
+      position: relative;
+      z-index: 1000;
+    }
+    .navbar-brand {
+      display: flex;
+      align-items: center;
+    }
+    .navbar-brand img {
+      height: 30px;
+      margin-right: 10px;
+    }
+    .navbar-dark .navbar-nav .nav-link {
+      color: #fff;
+      position: relative;
+      transition: color 0.3s ease;
+      padding: 0.5rem 1rem;
+    }
+    .navbar-dark .navbar-nav .nav-link:hover {
+      color: #00d4ff;
+    }
+    .navbar-dark .navbar-nav .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background: linear-gradient(to right, #00d4ff, #007bff);
+      transition: width 0.3s ease;
+    }
+    .navbar-dark .navbar-nav .nav-link:hover::after {
+      width: 100%;
+    }
+    /* Enhanced Dropdown (Hover Card) Styling */
+    .dropdown-menu {
+      background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+      border: 2px solid #00d4ff;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 212, 255, 0.3), inset 0 0 10px rgba(0, 123, 255, 0.2);
+      min-width: 250px;
+      padding: 1rem;
+      transform: translateY(10px);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 1001;
+    }
+    .nav-item.dropdown:hover .dropdown-menu {
+      display: block;
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
+    .dropdown-item {
+      color: #fff;
+      padding: 0.5rem 1rem;
+      transition: all 0.3s ease;
+      border-radius: 5px;
+    }
+    .dropdown-item:hover {
+      background-color: #007bff;
+      color: #fff;
+      transform: translateX(5px);
+    }
+    /* Cartoon Image in Dropdown */
+    .dropdown-cartoon {
+      display: block;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .dropdown-cartoon i {
+      font-size: 2rem;
+      color: #00d4ff;
+    }
+    /* Remove dropdown arrow */
+    .nav-item.dropdown .nav-link::after {
+      display: none !important;
+    }
+    /* Hero Section */
+    .hero {
+      position: relative;
+      height: 100vh;
+      background-color: #000;
+      overflow: hidden;
+      z-index: 1;
+    }
+    #particles-js {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+    .display-4 {
+      font-weight: 700;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    .lead {
+      font-style: italic;
+      opacity: 0.9;
+    }
+    /* Quote Section */
+    .quote-section {
+      padding: 4rem 0;
+      background-color: #111;
+      text-align: center;
+    }
+    .quote-section blockquote {
+      font-size: 1.8rem;
+      font-weight: 300;
+      color: #00d4ff;
+      border-left: 4px solid #007bff;
+      padding-left: 1.5rem;
+      margin: 0 auto;
+      max-width: 800px;
+      animation: fadeIn 1s ease-in;
+    }
+    .quote-section p {
+      font-size: 1.1rem;
+      color: #ccc;
+      max-width: 800px;
+      margin: 2rem auto 0;
+      line-height: 1.6;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <!-- Logo and Company Name -->
+    <a class="navbar-brand" href="#">
+      <img src="{% static 'app/images/company_logo.png' %}" alt="Konvo Logo">
+    </a>
+    <!-- Center: Menu Items -->
+    <ul class="navbar-nav mx-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link" href="#" id="platformDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          Platform
+        </a>
+        <div class="dropdown-menu" aria-labelledby="platformDropdown">
+          <div class="dropdown-cartoon">
+            <i class="fas fa-robot"></i>
+          </div>
+          <p class="dropdown-item">Our platform offers cutting-edge AI solutions.</p>
+          <a class="dropdown-item" href="#">Feature 1</a>
+          <a class="dropdown-item" href="#">Feature 2</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link" href="#" id="aiAgentDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          AI Agent
+        </a>
+        <div class="dropdown-menu" aria-labelledby="aiAgentDropdown">
+          <div class="dropdown-cartoon">
+            <i class="fas fa-user-astronaut"></i>
+          </div>
+          <p class="dropdown-item">Intelligent agents for various applications.</p>
+          <a class="dropdown-item" href="#">Agent Type 1</a>
+          <a class="dropdown-item" href="#">Agent Type 2</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link" href="#" id="solutionDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          Solution
+        </a>
+        <div class="dropdown-menu" aria-labelledby="solutionDropdown">
+          <div class="dropdown-cartoon">
+            <i class="fas fa-cogs"></i>
+          </div>
+          <a class="dropdown-item" href="#">Healthcare</a>
+          <a class="dropdown-item" href="#">E-commerce</a>
+          <a class="dropdown-item" href="#">Insurance</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link" href="#" id="resourcesDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          Resources
+        </a>
+        <div class="dropdown-menu" aria-labelledby="resourcesDropdown">
+          <div class="dropdown-cartoon">
+            <i class="fas fa-book"></i>
+          </div>
+          <p class="dropdown-item">Access our knowledge base and tools.</p>
+          <a class="dropdown-item" href="#">Documentation</a>
+          <a class="dropdown-item" href="#">Tutorials</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link" href="#" id="aboutDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          About
+        </a>
+        <div class="dropdown-menu" aria-labelledby="aboutDropdown">
+          <div class="dropdown-cartoon">
+            <i class="fas fa-users"></i>
+          </div>
+          <p class="dropdown-item">Learn more about Konvo and our mission.</p>
+          <a class="dropdown-item" href="#">Our Team</a>
+          <a class="dropdown-item" href="#">Contact Us</a>
+        </div>
+      </li>
+    </ul>
+    <!-- Right: Login Button -->
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Login</a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section with Animation -->
+  <section class="hero">
+    <div id="particles-js"></div>
+    <div class="container h-100 d-flex align-items-center justify-content-center hero-content">
+      <div class="text-center">
+        <h1 class="display-4 text-white">Welcome to KonvoAI</h1>
+        <p class="lead text-white">"Harnessing AI to transform the future."</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote Section -->
+  <section class="quote-section">
+    <blockquote>
+      "The future belongs to those who embrace the power of intelligent systems."
+    </blockquote>
+    <p>
+      KonvoAI pioneers transformative AI solutions, driving innovation across industries.
+      Join us to redefine what's possible with technology.
+    </p>
+  </section>
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    particlesJS('particles-js', {
+      "particles": {
+        "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+        "color": { "value": "#ffffff" },
+        "shape": { "type": "circle", "stroke": { "width": 0, "color": "#000000" } },
+        "opacity": { "value": 0.5, "random": false },
+        "size": { "value": 3, "random": true },
+        "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.4, "width": 1 },
+        "move": { "enable": true, "speed": 6, "direction": "none", "random": false, "straight": false, "out_mode": "out" }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": { "enable": true, "mode": "repulse" },
+          "onclick": { "enable": true, "mode": "push" },
+          "resize": true
+        },
+        "modes": {
+          "repulse": { "distance": 200, "duration": 0.4 },
+          "push": { "particles_nb": 4 }
+        }
+      },
+      "retina_detect": true
+    });
+  </script>
+</body>
+</html>
