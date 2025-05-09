@@ -1,11 +1,86 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <p>Welcome to the AI Services Application!</p>
-</body>
-</html>
+{% extends 'base/base.html' %}
+
+{% block title %}KonvoAI - Healthcare Solutions{% endblock %}
+
+{% block content %}
+  <section class="healthcare-section py-5">
+    <div class="container">
+      <h1 class="text-center mb-4">Healthcare Solutions</h1>
+      <p class="text-center mb-5">Explore our innovative AI-driven healthcare solutions designed to enhance patient care and streamline medical processes.</p>
+      <div class="row">
+        <!-- Symptom Checker -->
+        <div class="col-md-4 mb-4">
+          <div class="healthcare-card">
+            <i class="fas fa-stethoscope"></i>
+            <h3>Symptom Checker</h3>
+            <p>AI-powered chatbot to assess symptoms and provide preliminary advice.</p>
+            <div class="d-flex justify-content-center">
+              <a href="#" class="btn btn-primary mr-2">Demo</a>
+              <a href="#" class="btn btn-secondary">Get API</a>
+            </div>
+          </div>
+        </div>
+        <!-- Appointment Scheduling -->
+        <div class="col-md-4 mb-4">
+          <div class="healthcare-card">
+            <i class="fas fa-calendar-check"></i>
+            <h3>Appointment Scheduling</h3>
+            <p>Intelligent chatbot to streamline booking appointments.</p>
+            <div class="d-flex justify-content-center">
+              <a href="#" class="btn btn-primary mr-2">Demo</a>
+              <a href="#" class="btn btn-secondary">Get API</a>
+            </div>
+          </div>
+        </div>
+        <!-- Health FAQs -->
+        <div class="col-md-4 mb-4">
+          <div class="healthcare-card">
+            <i class="fas fa-question-circle"></i>
+            <h3>Health FAQs</h3>
+            <p>Instant answers to common health questions via chatbot.</p>
+            <div class="d-flex justify-content-center">
+              <a href="{% url 'chatbot' %}" class="btn btn-primary mr-2">Demo</a>
+              <a href="#" class="btn btn-secondary">Get API</a>
+            </div>
+          </div>
+        </div>
+        <!-- Medical Literature Research -->
+        <div class="col-md-4 mb-4">
+          <div class="healthcare-card">
+            <i class="fas fa-book-medical"></i>
+            <h3>Medical Literature Research</h3>
+            <p>AI agent for efficient medical research.</p>
+            <div class="d-flex justify-content-center">
+              <a href="#" class="btn btn-primary mr-2">Demo</a>
+              <a href="#" class="btn btn-secondary">Get API</a>
+            </div>
+          </div>
+        </div>
+        <!-- Scribe AI -->
+        <div class="col-md-4 mb-4">
+          <div class="healthcare-card">
+            <i class="fas fa-notes-medical"></i>
+            <h3>Scribe AI</h3>
+            <p>Automate medical documentation with AI.</p>
+            <div class="d-flex justify-content-center">
+              <a href="#" class="btn btn-primary mr-2">Demo</a>
+              <a href="#" class="btn btn-secondary">Get API</a>
+            </div>
+          </div>
+        </div>
+        <!-- Medicine Reminder -->
+        <div class="col-md-4 mb-4">
+          <div class="healthcare-card">
+            <i class="fas fa-pills"></i>
+            <h3>Medicine Reminder</h3>
+            <p>Intelligent system to ensure timely medication intake.</p>
+            <div class="d-flex justify-content-center">
+              <a href="#" class="btn btn-primary mr-2">Demo</a>
+              <a href="#" class="btn btn-secondary">Get API</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
